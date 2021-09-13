@@ -68,7 +68,7 @@ public class Menu {
 
     }
 
-    private static void newDiceWarConfirmation(int players, int rounds, int diceAmount) {
+    private static void subMenu(int players, int rounds, int diceAmount) {
         System.out.println("Ok, lets review!\nNumber of players: " + players + "\nNumber of Rounds: " + rounds + "\nThe amount of " + diceAmount);
         System.out.println("Is this all correct?\n Y to start the game or N to return to restart the form.");
         CLI.scanner.nextLine();
@@ -83,15 +83,10 @@ public class Menu {
         }
     }
 
-    public static void subMenu() {
-
-
-
-    }
-
     public static void scoreboard() {
         if (scoreboard.size() != 0) {
             System.out.println("Here is the scoreboard from our previous game!");
+            Collections.sort(scoreboard);
             Collections.reverse(scoreboard);
             for (int i = 0; i < scoreboard.size(); i++) {
                 System.out.println((i + 1) + ") " + scoreboard.get(i).getName() + "....." + scoreboard.get(i).getScore() + " Points");
