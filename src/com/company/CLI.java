@@ -39,7 +39,7 @@ public class CLI {
     }
 
     public static void exit() {
-        System.out.println("\nExiting the game. Please come again!\n");
+        System.out.println("\nExiting the game.\n");
         System.exit(0);
     }
 
