@@ -5,23 +5,26 @@ package com.company;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("all")
+
 public class Game {
 
     private ArrayList<Player> players = new ArrayList<>();
     private int numOfRounds;
     private int numOfDice;
     private ArrayList<Player> winner = new ArrayList<>();
-    private Die dice;
+    //private Die dice;
 
     public Game(int numOfPlayers, int numOfRounds, int numOfDice) {
-        generatePlayers(numOfPlayers);
         this.numOfRounds = numOfRounds;
         this.numOfDice = numOfDice;
+        generatePlayers(numOfPlayers);
+        generateDie();
+        startGame();
     }
 
     public void startGame() {
         CLI.flavorText("Welcome to Dice-Wars!");
-
         for (int i = 1; i <= numOfRounds; i++) {
             CLI.flavorText("Round " + i + "!");
 
@@ -32,9 +35,29 @@ public class Game {
         }
     }
 
-    private void playerTurn(Player player) {
+    private void generatePlayers(int numOfPlayers) {
+        players.clear();
+        for (int i = 0; i < numOfPlayers; i++) {
+            System.out.println("Enter your name!");
+            String name = CLI.getString();
+            Player newPlayer = new Player(name);
+            newPlayer.dice = generateDie();
+            players.add(newPlayer);
+        }
+        startGame();
+    }
 
-        int roundScore = 0;
+    private ArrayList<Die> generateDie() {
+        ArrayList<Die> tempArr = new ArrayList<Die>();
+
+        for (int i = 0; i < numOfDice; i++) {
+            Die newDie = new Die(6);
+            tempArr.add(newDie);
+        }
+        return tempArr;
+    }
+
+    private void playerTurn(Player player) {
 
         System.out.println("It is " + player.getName() + "'s turn! Roll your damn die.");
         String enter = CLI.getString(0, 1);
@@ -44,11 +67,15 @@ public class Game {
         }
 
         if (enter.equals("")) {
-            for (int i = 1; i <= numOfDice; i++) {
+
+            /*for (int i = 1; i <= numOfDice; i++) {
                 dice.rollDie();
                 System.out.println("Dice " + i + " rolled a " + dice.getValue() + "!");
                 roundScore += dice.getValue();
-            }
+            }*/ //melee best smash
+
+            int roundScore = player.rollDice();
+
             player.setScore(player.getScore() + roundScore);
             CLI.flavorText(player.getName() + " rolled a total of " + roundScore + " for this round!");
         }
@@ -92,27 +119,7 @@ public class Game {
 
     }
 
-    private void generatePlayers(int numOfPlayers) {
-        players.clear();
-        for (int i = 0; i < numOfPlayers; i++) {
-            System.out.println("Enter your name!");
-            String name = CLI.getString();
-            Player newPlayer = new Player(name);
-            players.add(newPlayer);
-        }
-        startGame();
-    }
 
-
-    private ArrayList<Die> generateDie() {
-        ArrayList<Die> tempArr = new ArrayList<Die>();
-
-        for (int i = 0; i < numOfDice; i++) {
-            Die newDie = new Die(6);
-            tempArr.add(newDie);
-        }
-        return tempArr;
-    }
 }
 
 

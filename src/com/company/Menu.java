@@ -1,6 +1,5 @@
 /* This class is used to operate the menus. This works in conjunction with the CLI class to show the players the main, sub, and scoreboard menus. */
 
-
 package com.company;
 
 import java.util.ArrayList;
@@ -8,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.company.CLI.flavorText;
+
+@SuppressWarnings("all")
 
 public class Menu {
 
@@ -33,15 +34,12 @@ public class Menu {
             int rounds = CLI.getInt(1,10);
             System.out.println();
 
-            flavorText("Awesome! What type of dice do you want to use? Enter a number representing how many sides the dice has. Min of 2, max of 20.");
-            int typeOfDice = CLI.getInt(2, 20);
-            System.out.println();
 
             flavorText("Almost done! How many dice will each player roll per round? Min of 1, max of 10.\n");
             int diceAmount = CLI.getInt(1,10);
             System.out.println();
 
-            System.out.println("Ok, lets review!\nNumber of players: " + players + "\nNumber of Rounds: " + rounds + "\nType of dice your rolling: D" + typeOfDice + "\nThe amount of D" + typeOfDice + " : " + diceAmount); //TODO: Refactor this code into a new method
+            System.out.println("Ok, lets review!\nNumber of players: " + players + "\nNumber of Rounds: " + rounds + "\nType of dice your rolling: D" + "\nThe amount of D" + " : " + diceAmount); //TODO: Refactor this code into a new method
             System.out.println("Is this all correct?\n Y to start the game or N to return to restart the form.");
             //TODO: Refactor this input code into a new method
             CLI.scanner.nextLine();

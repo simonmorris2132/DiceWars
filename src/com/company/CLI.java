@@ -6,6 +6,8 @@ package com.company;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+@SuppressWarnings("all")
+
 public class CLI {
 
     static Scanner scanner = new Scanner(System.in);
@@ -84,7 +86,6 @@ public class CLI {
         }
         return false;
     }
-
 
     public static void flavorText(String statement){
         System.out.println(statement);

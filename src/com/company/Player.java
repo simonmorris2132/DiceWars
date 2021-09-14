@@ -3,8 +3,13 @@
 
 package com.company;
 
+import java.util.ArrayList;
+
+@SuppressWarnings("all")
+
 public class Player implements Comparable<Player> {
 
+    public ArrayList<Die> dice;
     private String name;
     private int score;
 
@@ -27,6 +32,16 @@ public class Player implements Comparable<Player> {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public int rollDice() {
+        int totalRoll = 0;
+        for (int i = 0; i < dice.size(); i++) {
+            Die tempDie = dice.get(i);
+            tempDie.rollDie();
+            totalRoll += tempDie.getValue();
+        }
+        return totalRoll;
     }
 
     @Override

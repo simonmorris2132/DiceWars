@@ -3,6 +3,8 @@
 
 package com.company;
 
+@SuppressWarnings("all")
+
 public class Die {
 
     private final int sides;
